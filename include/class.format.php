@@ -540,7 +540,8 @@ class Format {
         if (extension_loaded('intl') && class_exists('NumberFormatter')) {
             $nf = NumberFormatter::create($locale ?: Internationalization::getCurrentLocale(),
                 NumberFormatter::DECIMAL);
-            return $nf->format($number);
+		$NumberFormat = ($number==0) ? 0 : $nf->format($number);
+            	return $NumberFormat;
         }
 
         return number_format((int) $number);
